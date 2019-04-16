@@ -1,5 +1,4 @@
 from base64 import b64encode
-from sys import argv
 import json
 import requests
 
@@ -19,6 +18,15 @@ with open("receipt1.jpg", 'rb') as f:
     })
     # print(img_requests)
     # print(ctxt)
-    
+
+response = requests.post(
+    ENDPOINT_URL,
+    data=json.dumps({"requests": img_requests}).encode(),
+    params={'key': "./key.json"},
+    headers={'Content-Type': 'application/json'}
+)
+
+print(response)
+
 f.close()
 print("finish")

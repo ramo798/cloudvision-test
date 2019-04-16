@@ -3,10 +3,11 @@ import json
 import requests
 
 ENDPOINT_URL = 'https://vision.googleapis.com/v1/images:annotate'
+api_key = "key.json"
 
 img_requests = [] #送信するファイル
 
-with open("receipt1.jpg", 'rb') as f:
+with open("./receipt1.jpg", 'rb') as f:
     # ctxt = b64encode(f.read()) ＃デコードするとprintで表示された　要仕様確認
     ctxt = b64encode(f.read()).decode() #base64エンコード
     img_requests.append({
@@ -16,17 +17,16 @@ with open("receipt1.jpg", 'rb') as f:
             'maxResults': 10
         }]
     })
-    # print(img_requests)
-    # print(ctxt)
+    
+data = json.dumps({"requests": img_requests }).encode()
 
 response = requests.post(
     ENDPOINT_URL,
-    data=json.dumps({"requests": img_requests}).encode(),
-    params={'key': "./key.json"},
+    data,
+    params={'key': api_key},
     headers={'Content-Type': 'application/json'}
 )
 
 print(response)
 
 f.close()
-print("finish")

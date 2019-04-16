@@ -2,3 +2,4 @@
 key.json
 test.py
 getapikey.py
+__pycache__

@@ -3,6 +3,11 @@ from sys import argv
 import json
 import requests
 
-print("success")
+ENDPOINT_URL = 'https://vision.googleapis.com/v1/images:annotate'
 
-print("success")
+with open("receipt1.jpg", 'rb') as f:
+    ctxt = b64encode(f.read()).decode()
+    print(ctxt)
+    
+f.close()
+print("finish")

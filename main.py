@@ -1,9 +1,10 @@
 from base64 import b64encode
 import json
 import requests
+from getapikey import Getkey
 
 ENDPOINT_URL = 'https://vision.googleapis.com/v1/images:annotate'
-api_key = "AIzaSyDvEANhFo30rDRAXcZ88QJmQmqtbbw5Jhc"
+api_key = Getkey()
 
 img_requests = [] #送信するファイル
 

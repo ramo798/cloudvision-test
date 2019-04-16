@@ -26,6 +26,6 @@ response = requests.post(
     headers={'Content-Type': 'application/json'}
 )
 for idx, resp in enumerate(response.json()['responses']):
-    print(json.dumps(resp, indent=2))
+    print(json.dumps(resp, ensure_ascii=False, indent=2))
 
 f.close()

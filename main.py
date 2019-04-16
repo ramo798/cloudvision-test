@@ -3,7 +3,7 @@ import json
 import requests
 
 ENDPOINT_URL = 'https://vision.googleapis.com/v1/images:annotate'
-api_key = "key.json"
+api_key = "AIzaSyDvEANhFo30rDRAXcZ88QJmQmqtbbw5Jhc"
 
 img_requests = [] #送信するファイル
 
@@ -13,20 +13,19 @@ with open("./receipt1.jpg", 'rb') as f:
     img_requests.append({
         'image': {'content': ctxt},
         'features': [{
-            'type': 'TEXT_DETECTION	',
+            'type': 'TEXT_DETECTION',
             'maxResults': 10
         }]
     })
     
-data = json.dumps({"requests": img_requests }).encode()
 
 response = requests.post(
     ENDPOINT_URL,
-    data,
+    data=json.dumps({"requests": img_requests}).encode(),
     params={'key': api_key},
     headers={'Content-Type': 'application/json'}
 )
-
-print(response)
+for idx, resp in enumerate(response.json()['responses']):
+    print(json.dumps(resp, indent=2))
 
 f.close()
